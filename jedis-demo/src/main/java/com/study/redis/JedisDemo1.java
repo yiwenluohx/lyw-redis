@@ -2,6 +2,8 @@ package com.study.redis;
 
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Transaction;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,12 +28,19 @@ public class JedisDemo1 {
             return false;
         }
         //2、连接redis
-        Jedis jedis = new Jedis("127.0.0.1", 6379, 1000);
+//        Jedis jedis = new Jedis("127.0.0.1", 6379, 1000);
+        //修改为通过连接池获取jedis对象，解决链接超时问题
+        JedisPool jedisPool = JedisPoolUtil.getJedisPoolInstance();
+        Jedis jedis = jedisPool.getResource();
         //3、拼接key
         //3.1 库存key
         String kcKey = "sk:" + proId + ":qt";
         //3.2 秒杀成功用户key
         String userKey = "sk:" + proId + ":user";
+
+        //监视库存
+        jedis.watch(kcKey);
+
         //4、获取库存，如果null，秒杀还没开始
         String kc = jedis.get(kcKey);
         if (kc == null) {
@@ -52,10 +61,26 @@ public class JedisDemo1 {
             return false;
         }
         //7、秒杀过程
+
+        //使用事务
+        Transaction multi = jedis.multi();
+
+        //组队操作
+        multi.decr(kcKey);
+        multi.sadd(userKey, uid);
+
+        List<Object> results = multi.exec();
+
+        if (results == null || results.size() == 0) {
+            System.out.println("秒杀失败了....");
+            jedis.close();
+            return false;
+        }
+
         //7.1、库存-1
-        jedis.decr(kcKey);
+//        jedis.decr(kcKey);
         //7.2、把秒杀成功用户添加秒杀清单里
-        jedis.sadd(userKey, uid);
+//        jedis.sadd(userKey, uid);
         System.out.println("秒杀成功了...");
         jedis.close();
         return true;
