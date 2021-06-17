@@ -18,7 +18,7 @@ public class RedisTestController {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @GetMapping()
+    @GetMapping("/test")
     public String testRedis() {
         redisTemplate.opsForValue().set("name", "lucy");
         String name = (String) redisTemplate.opsForValue().get("name");
