@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @Author: luohx
  * @Description: 描述
@@ -29,7 +31,7 @@ public class RedisTestController {
     @GetMapping("testLock")
     public void testLock() {
         //1 获取锁，setne
-        Boolean lock = redisTemplate.opsForValue().setIfAbsent("lock", "111");
+        Boolean lock = redisTemplate.opsForValue().setIfAbsent("lock", "111", 3, TimeUnit.SECONDS);
         //2 获取锁成功，查询num的值
         if (lock) {
             Object value = redisTemplate.opsForValue().get("num");
