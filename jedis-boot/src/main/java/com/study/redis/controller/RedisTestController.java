@@ -2,6 +2,7 @@ package com.study.redis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,8 @@ public class RedisTestController {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/test")
     public String testRedis() {
@@ -114,7 +117,7 @@ public class RedisTestController {
                 ex.printStackTrace();
             }
         }
-
+        stringRedisTemplate.opsForValue().increment("");
     }
 
 }
