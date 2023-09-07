@@ -1,4 +1,4 @@
-package com.study.redis;
+package com.study.redis.jedisTest;
 
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  * @Author: luohx
- * @Description: 描述
+ * @Description: 秒杀版本1.0和改进版本1.1 解决链接超时问题和使用jedis.watch乐观锁解决超卖问题
  * @Date: 2021/6/16 0016 14:51
  */
 public class JedisDemo1 {

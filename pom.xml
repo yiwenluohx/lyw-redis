@@ -12,6 +12,8 @@
     <modules>
         <module>jedis-demo</module>
         <module>jedis-boot</module>
+        <module>redisson-boot</module>
+        <module>seckill-boot</module>
     </modules>
 
     <properties>

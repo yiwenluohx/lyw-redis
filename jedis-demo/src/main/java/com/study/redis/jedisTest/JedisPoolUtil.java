@@ -1,4 +1,4 @@
-package com.study.redis;
+package com.study.redis.jedisTest;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -24,7 +24,8 @@ public class JedisPoolUtil {
                     poolConfig.setMaxIdle(32);
                     poolConfig.setMaxWaitMillis(100*1000);
                     poolConfig.setBlockWhenExhausted(true);
-                    poolConfig.setTestOnBorrow(true);  // ping  PONG
+                    // ping  PONG
+                    poolConfig.setTestOnBorrow(true);
 
                     jedisPool = new JedisPool(poolConfig, "127.0.0.1", 6379, 60000 );
                 }
@@ -35,7 +36,7 @@ public class JedisPoolUtil {
 
     public static void release(JedisPool jedisPool, Jedis jedis) {
         if (null != jedis) {
-            jedisPool.returnResource(jedis);
+//            jedisPool.returnResource(jedis);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.study.redis;
+package com.study.redis.jedisTest;
 
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.HostAndPort;
