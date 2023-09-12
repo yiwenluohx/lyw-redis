@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.seckillboot.dao.SeckillSkuInfoMapper">
+    <select id="querySkuInfoBySecKillId"
+            resultType="com.study.seckillboot.model.SeckillSkuInfo">
+        select ssi.id, ssi.seckill_id as seckillId, ssi.sku_id as skuId, ssi.sku_name as skuName,
+        ssi.seckill_price as seckillPrice,ssi.seckill_stock as seckillStock, ssi.limit from
+        seckill_sku_info as ssi
+        <where>
+            <if test="secKillId != null">
+                and ssi.seckill_id = #{secKillId}
+            </if>
+        </where>
+    </select>
+</mapper>

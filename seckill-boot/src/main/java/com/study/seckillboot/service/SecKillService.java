@@ -14,6 +14,7 @@ public interface SecKillService {
      * 使用redis的list完成秒杀
      *
      * @param id
+     * @param userId
      */
-    void useRedisList(int id);
+    void useRedisList(String id, String userId);
 }

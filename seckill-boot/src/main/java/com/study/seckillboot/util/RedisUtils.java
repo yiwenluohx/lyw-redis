@@ -199,6 +199,23 @@ public class RedisUtils {
         return "";
     }
 
+    /**
+     * 获取/设置分布式信号量
+     *
+     * @param key
+     * @param stock
+     * @return {@link RSemaphore}
+     */
+    public RSemaphore getSemaphore(String key, int stock) {
+        // 设置分布式信号量 (key: seckill:stock:+秒杀商品表id)
+        RSemaphore semaphore = redissonClient.getSemaphore(key);
+        if (stock > 0) {
+            // 信号量设置秒杀商品库存
+            semaphore.trySetPermits(stock);
+        }
+        return semaphore;
+    }
+
 
 //   /**
 //     * 在队列尾部减少一个对象

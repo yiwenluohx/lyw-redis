@@ -5,6 +5,7 @@ import java.util.Date;
 
 /**
  * 秒杀活动
+ *
  * @author luohx
  * @version 1.0.0
  * @date: 2023/9/11 下午7:15
@@ -13,36 +14,42 @@ import java.util.Date;
 public class SeckillInfo implements Serializable {
     /**
      * 主键id
+     *
      * @return
      */
     private String id;
 
     /**
      * 活动名称
+     *
      * @return
      */
     private String name;
 
     /**
      * 开始时间
+     *
      * @return
      */
     private Date startTime;
 
     /**
      * 结束时间
+     *
      * @return
      */
     private Date endTime;
 
     /**
      * 描述
+     *
      * @return
      */
     private String description;
 
     /**
      * 活动状态，1 开启 2 关闭
+     *
      * @return
      */
     private Integer state;

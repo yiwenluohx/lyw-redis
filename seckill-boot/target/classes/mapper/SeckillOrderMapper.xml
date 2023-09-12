@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.seckillboot.dao.SeckillOrderMapper">
+    <!--    <select id="queryApply"-->
+    <!--            resultType="com.sucaipa.ems.model.EqApply">-->
+    <!--        select * from eq_apply as apply-->
+    <!--        <where>-->
+    <!--            <if test="status != null and status != -1">-->
+    <!--                and apply.status = #{status}-->
+    <!--            </if>-->
+    <!--        </where>-->
+    <!--        order by apply.create_time desc-->
+    <!--    </select>-->
+</mapper>

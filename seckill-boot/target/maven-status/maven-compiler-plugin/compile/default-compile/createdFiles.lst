@@ -8,10 +8,13 @@ com/study/seckillboot/config/RedisProperties.class
 com/study/seckillboot/SeckillBootApplication.class
 com/study/seckillboot/service/impl/SecKillServiceImpl.class
 com/study/seckillboot/config/RedisPoolProperties.class
+com/study/seckillboot/dao/SeckillOrderMapper.class
 com/study/seckillboot/model/MiaoShaGoods.class
+com/study/seckillboot/dao/SeckillSkuInfoMapper.class
 com/study/seckillboot/model/SeckillSkuInfo.class
 com/study/seckillboot/util/RedisUtils.class
 com/study/seckillboot/config/RedisSingleProperties.class
 com/study/seckillboot/service/SecKillService.class
 com/study/seckillboot/config/RedisClusterProperties.class
+com/study/seckillboot/dao/SeckillInfoMapper.class
 com/study/seckillboot/controller/SeckillController.class

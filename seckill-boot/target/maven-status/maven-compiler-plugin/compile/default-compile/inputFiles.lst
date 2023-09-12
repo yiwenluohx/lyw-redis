@@ -7,9 +7,12 @@
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/controller/SeckillController.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/SeckillInfo.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/SeckillSkuInfo.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/dao/SeckillSkuInfoMapper.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/SeckillOrder.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisSentinelProperties.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/dao/SeckillInfoMapper.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisSingleProperties.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisProperties.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisPoolProperties.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/dao/SeckillOrderMapper.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/CacheConfiguration.java
