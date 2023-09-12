@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author luohongxiao
  */
-@SpringBootApplication
+
+@SpringBootApplication(scanBasePackages = {"com.study.seckillboot" })
 public class SeckillBootApplication {
 
 	public static void main(String[] args) {

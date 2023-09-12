@@ -1,1 +1,15 @@
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/service/SecKillService.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/util/RedisUtils.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/MiaoShaGoods.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisClusterProperties.java
 /System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/SeckillBootApplication.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/service/impl/SecKillServiceImpl.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/controller/SeckillController.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/SeckillInfo.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/SeckillSkuInfo.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/model/SeckillOrder.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisSentinelProperties.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisSingleProperties.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisProperties.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/RedisPoolProperties.java
+/System/Volumes/Data/projects/java-projects/lyw-redis/seckill-boot/src/main/java/com/study/seckillboot/config/CacheConfiguration.java
