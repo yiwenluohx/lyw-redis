@@ -23,11 +23,32 @@ public class SeckillController {
     @Autowired
     private SecKillService secKillService;
 
+    /**
+     * redisson 信号量实现秒杀
+     *
+     * @return
+     */
     @GetMapping("/test")
     public String secKill_01() {
         //模拟多线程抢购
         for (int i = 0; i < 110; i++) {
-            Thread thread = new Thread(() -> secKillService.useRedisList("1", UUID.randomUUID().toString()));
+            Thread thread = new Thread(() -> secKillService.useRedisSemaphore("1", UUID.randomUUID().toString()));
+            thread.setName("线程" + i);
+            thread.start();
+        }
+        return "";
+    }
+
+    /**
+     * redisson 分布式锁实现秒杀
+     *
+     * @return
+     */
+    @GetMapping("/test02")
+    public String secKill_02() {
+        //模拟多线程抢购
+        for (int i = 0; i < 105; i++) {
+            Thread thread = new Thread(() -> secKillService.useRedisLock());
             thread.setName("线程" + i);
             thread.start();
         }

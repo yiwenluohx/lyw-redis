@@ -44,7 +44,7 @@ public class SeckillSkuInfo implements Serializable {
     /**
      * 每人限购数量
      */
-    private Integer limit;
+    private Integer limitNum;
 
     /**
      * Gets the value of id.
@@ -155,20 +155,20 @@ public class SeckillSkuInfo implements Serializable {
     }
 
     /**
-     * Gets the value of limit.
+     * Gets the value of limitNum.
      *
-     * @return the value of limit
+     * @return the value of limitNum
      */
-    public Integer getLimit() {
-        return limit;
+    public Integer getLimitNum() {
+        return limitNum;
     }
 
     /**
-     * Sets the limit. *
-     * <p>You can use getLimit() to get the value of limit</p>
-     * * @param limit limit
+     * Sets the limitNum. *
+     * <p>You can use getLimitNum() to get the value of limitNum</p>
+     * * @param limitNum limitNum
      */
-    public void setLimit(Integer limit) {
-        this.limit = limit;
+    public void setLimitNum(Integer limitNum) {
+        this.limitNum = limitNum;
     }
 }

@@ -9,8 +9,11 @@ import com.study.seckillboot.model.SeckillInfo;
 import com.study.seckillboot.model.SeckillOrder;
 import com.study.seckillboot.model.SeckillSkuInfo;
 import com.study.seckillboot.service.SecKillService;
+import com.study.seckillboot.util.RedisLock;
 import com.study.seckillboot.util.RedisUtils;
+import org.redisson.api.RAtomicLong;
 import org.redisson.api.RSemaphore;
+import org.redisson.api.RSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +53,10 @@ public class SecKillServiceImpl implements SecKillService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @PostConstruct
+    @Autowired
+    private RedisLock redisLock;
+
+    //    @PostConstruct
     public void initData() {
         SeckillInfo seckillInfo = seckillInfoMapper.selectById("1");
         // 缓存秒杀活动 (key: seckill:demo)
@@ -70,9 +76,15 @@ public class SecKillServiceImpl implements SecKillService {
         });
     }
 
+    @PostConstruct
+    public void initData0() {
+        SeckillSkuInfo skuInfo = seckillSkuInfoMapper.selectById("1");
+        redisUtils.setAtomicLong("scekill:goods:" + skuInfo.getId(), Long.valueOf(skuInfo.getSeckillStock()));
+    }
+
 
     @Override
-    public void useRedisList(String seckillId, String userId) {
+    public void useRedisSemaphore(String seckillId, String userId) {
         log.info("秒杀开始，当前线程名称{}", Thread.currentThread().getName());
         // 获取秒杀活动
         BoundHashOperations<String, String, Object> seckills = stringRedisTemplate.boundHashOps("seckill:demo");
@@ -106,7 +118,7 @@ public class SecKillServiceImpl implements SecKillService {
                 //设置过期时间为活动有效时间
                 stringRedisTemplate.expire("seckill:user:" + userId + "_" + info.getId(), 168000, TimeUnit.MILLISECONDS);
                 // 判断抢到的用户是否满足要求，不满足则释放一个信号量（redis中信号量值+1）
-                if (total > skuInfo.getLimit()) {
+                if (total > skuInfo.getLimitNum()) {
                     // 释放信号量 ，其中num为购买商品数量
                     semaphore.release(1);
                 }
@@ -116,5 +128,27 @@ public class SecKillServiceImpl implements SecKillService {
 //        rabbitTemplate.convertAndSend("seckillExchange", "seckillOrderRoutingkey", order);
             }
         }
+    }
+
+    @Override
+    public void useRedisLock() {
+        redisLock.syncWaitHandle("scekill:goods:" + "1_1", () -> {
+
+            RAtomicLong rAtomicLong = redisUtils.getRAtomicLong("scekill:goods:" + 1);
+//            RSet<String> productUserSet = redissonClient.getSet(PRODUCT_USER_KEY);
+//            if (productUserSet != null && productUserSet.contains(userId)) {
+//                return "您已秒杀过，请勿重复秒杀";
+//            }
+            if (rAtomicLong.get() <= 0) {
+                log.info("秒杀失败，当前线程名称{}", Thread.currentThread().getName());
+                return "很遗憾，秒杀已结束";
+            }
+            // 加入到秒杀集合
+//            productUserSet.add(userId);
+            // 库存减1
+            rAtomicLong.decrementAndGet();
+            log.info("秒杀成功,库存剩余"+ rAtomicLong.get() +"当前线程名称{}", Thread.currentThread().getName());
+            return "恭喜您，秒杀成功！";
+        }, "网络繁忙，请重试");
     }
 }

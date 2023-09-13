@@ -11,10 +11,16 @@ package com.study.seckillboot.service;
 public interface SecKillService {
 
     /**
-     * 使用redis的list完成秒杀
+     * 使用redis的信号量完成秒杀
      *
      * @param id
      * @param userId
      */
-    void useRedisList(String id, String userId);
+    void useRedisSemaphore(String id, String userId);
+
+
+    /**
+     * 分布式锁实现秒杀
+     */
+    void useRedisLock();
 }

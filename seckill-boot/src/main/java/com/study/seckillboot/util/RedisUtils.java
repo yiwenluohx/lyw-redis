@@ -83,6 +83,36 @@ public class RedisUtils {
     }
 
     /**
+     * 设置
+     *
+     * @param key
+     * @param value
+     */
+    public void setAtomicLong(String key, Long value) {
+        RAtomicLong atomicLong = redissonClient.getAtomicLong(key);
+        atomicLong.addAndGet(value);
+    }
+
+    /**
+     * 获取
+     *
+     * @param key
+     */
+    public Long getAtomicLong(String key) {
+        RAtomicLong atomicLong = redissonClient.getAtomicLong(key);
+        return atomicLong.get();
+    }
+
+    /**
+     * 获取
+     *
+     * @param key
+     */
+    public RAtomicLong getRAtomicLong(String key) {
+        return redissonClient.getAtomicLong(key);
+    }
+
+    /**
      * 缓存带过期时间的字符串
      *
      * @param key     缓存key
@@ -217,22 +247,4 @@ public class RedisUtils {
     }
 
 
-//   /**
-//     * 在队列尾部减少一个对象
-//     * @param listName
-//     * @return {@link String}
-//     */
-//    public String removeOneEntryOnListRight(String listName) {
-//        return redissonClient.opsForList().rightPop(listName);
-//    }
-//
-//    /**
-//     * 在队列头部新增对象
-//     * @param listName
-//     * @param args
-//     * @return {@link Long}
-//     */
-//    public Long addEntriesOnListLeft(String listName, Collection<String> args) {
-//        return redissonClient.opsForList().leftPushAll(listName, args);
-//    }
 }
